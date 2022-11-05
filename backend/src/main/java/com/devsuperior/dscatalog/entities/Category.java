@@ -1,11 +1,16 @@
 package com.devsuperior.dscatalog.entities;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
+@Table(name = "tb_category") // nome da tabela no banco
 public class Category implements Serializable {
     private static final long serialVersionId = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // define que o id vai ser gerado automaticamente
     private Long id;
     private String name;
 
