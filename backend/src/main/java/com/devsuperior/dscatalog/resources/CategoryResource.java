@@ -1,5 +1,6 @@
 package com.devsuperior.dscatalog.resources;
 
+import com.devsuperior.dscatalog.dto.CategoryDTO;
 import com.devsuperior.dscatalog.entities.Category;
 import com.devsuperior.dscatalog.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController // Annotation do spring
@@ -18,9 +18,10 @@ public class CategoryResource {
 
     @Autowired
     private CategoryService service;
+
     @GetMapping // o getmapping configura que o ResponseEntity é um end point (web service)
-    public ResponseEntity<List<Category>> findAll() {
-        List<Category> list = service.findAll();
-        return ResponseEntity.ok().body(list); //
+    public ResponseEntity<List<CategoryDTO>> findAll() {
+        List<CategoryDTO> list = service.findAll();
+        return ResponseEntity.ok().body(list);
     }
 }
