@@ -38,4 +38,16 @@ public class CategoryResource {
                 .buildAndExpand(dto.getId()).toUri(); // location header
         return ResponseEntity.created(uri).body(dto); // .created(uri) retorna http 201 que é o método para criação
     }
+
+    @PutMapping(value = "/{id}") // atualizando a categoria
+    public ResponseEntity<CategoryDTO> update(@PathVariable Long id, @RequestBody CategoryDTO dto) {
+        dto = service.update(id, dto);
+        return ResponseEntity.ok().body(dto);
+    }
+
+    @DeleteMapping(value = "/{id}") // deleta uma categoria
+    public ResponseEntity<Void> delete(@PathVariable Long id) { // obs Void
+        service.delete(id);
+        return ResponseEntity.noContent().build(); // como não vai ter corpo, podemos retornar o noContet 204
+    }
 }
